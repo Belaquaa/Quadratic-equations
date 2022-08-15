@@ -3,7 +3,7 @@ import math
 import time
 
 ### SETTINGS ###
-mode = 1
+mode = 4
 			  # Режимы работы
 	 		  # 0 - автоматическая генерация
 			  # 1 - ввести коэф. уравнения
@@ -13,10 +13,12 @@ mode = 1
 
 count = 0   # Счетчик запусков (стоит на '0')
 
+print('')
+
 
 ### DEF RANDOM START ###
 def rnd():
-	predel_max = 5 # Можно менять. Предел коэффициентов
+	predel_max = 15 # Можно менять. Предел коэффициентов
 	predel_min = -predel_max
 	global a
 	global b
@@ -129,7 +131,7 @@ def korni(a, b, c):
 
 	if int(sD) == sD:
 		sD = int(sD)
-	print('Корни:')
+	
 
 	ch1 = round(-b + sD, 7)
 	ch2 = round(-b - sD, 7)
@@ -157,11 +159,13 @@ def korni(a, b, c):
 
 	if len(str(x1)) < 7 and len(str(x2)) < 7:
 		if x1 == x2 or D == 0:
+			print('Корень: ')
 			if int(x1) == x1:
 				print('x =', int(x1))
 			else:
 				print('x =', x1)
 		else:
+			print('Корни: ')
 			if int(x1) == x1 and int(x2) == x2:
 				print('x₁ =', int(x1))
 				print('x₂ =', int(x2))
@@ -174,6 +178,9 @@ def korni(a, b, c):
 					print('x₂ =', int(x2))
 				else:
 					print('x₂ =', x2)
+			if mode == 1:
+				print('')
+				print('D = '+str(D))
 	else:
 		zn1k1 = zn1/k1
 		if int(zn1k1) == zn1k1:
@@ -233,7 +240,7 @@ if mode == 0:
 					print('')
 					korni(a, b, c)
 					print('')
-					print('D = ' + str(D), 'C = ' + str(count))
+					print('D = ' + str(D), 'Cycles = ' + str(count))
 					break
 			else:
 				rnd()
@@ -320,6 +327,13 @@ if mode == 2:
 	else:
 		yravnenie(a*rndm2, round(b*rndm2, 5), round(c*rndm2, 5))
 
+	D = b**2 - 4*a*c
+
+	if int(D) == D:
+		D = int(D)
+	print('')
+	print('D = ' + str(D))
+
 ### MODE 2 END ###
 
 
@@ -327,7 +341,7 @@ if mode == 2:
 ### MODE 3 START ###
 
 if mode == 3:
-	print('Введите a и  n, чтобы раскрыть (ax + n)²:')
+	print('Введите a и n, чтобы раскрыть (ax + n)²:')
 	sp = list(map(float, input('a = ').split()))
 	if len(sp) == 1:
 		ax = sp[0]
@@ -370,6 +384,7 @@ if mode == 3:
 		yravnenie_dop(a, b, c)
 	else:
 		yravnenie_dop(a, b, c)
+	print('')
 	korni(a, b, c)
 
 ### MODE 3 END ###
@@ -501,13 +516,6 @@ if mode == 4:
 					bal -= 2
 					streak_n += 1
 
-				if bal < 0:
-					print('')
-					print('Кажется, у тебя закончились кристаллы!')
-					time.sleep(2)
-					print('Приходи, когда будешь побогаче!')
-					break
-					time.sleep(2)
 
 				if streak == 3:
 					print('')
@@ -533,6 +541,14 @@ if mode == 4:
 					print('Ладно, хорошего дня. До свидания!')
 					break
 
+				if bal < 0:
+					print('')
+					print('Кажется, у тебя закончились кристаллы!')
+					time.sleep(2)
+					print('Приходи, когда будешь побогаче!')
+					break
+					time.sleep(2)
+
 		else:
 			print('Ну что ж')
 			time.sleep(1)
@@ -541,6 +557,6 @@ if mode == 4:
 			print('Хорошего дня!')
 			time.sleep(1)
 		print('...')
-		time.sleep(3)
+		time.sleep(1.5)
 
 ### MODE 4 END ###
