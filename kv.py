@@ -1,7 +1,7 @@
 import random
 import math
 import time
-
+ 
 ### SETTINGS ###
 mode = 4
 			  # Режимы работы
